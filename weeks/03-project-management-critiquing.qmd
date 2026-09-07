@@ -7,8 +7,8 @@ source("week-summary/R/week-summary.R")
 
 # Ideation and Project Management: Critiquing AI {#sec-project-management-critiquing}
 
-::: {.callout-note icon=false}
-🎧 **This was written by humans.** But we also like this [AI-generated podcast](https://social-science-collaboratory.github.io/AI_in_science_2027/media/cognitive-debt-w2-w3.m4a) (20:36) of the entire 2-week unit.
+::: {.callout-note icon=false title="🎧 This was written by humans."}
+But we also like this [AI-generated podcast](https://social-science-collaboratory.github.io/AI_in_science_2027/media/cognitive-debt-w2-w3.m4a) (20:36) of the entire 2-week unit on Ideation and Project Management.
 
 ```{=html}
 <audio controls preload="metadata" style="width: 100%; margin-top: 0.6rem;"
