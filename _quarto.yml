@@ -11,6 +11,11 @@ project:
   # chapter in weeks/ can source("week-summary/R/week-summary.R") by the same
   # root-relative path index.qmd uses.
   execute-dir: project
+  # The Weeks 2-3 podcast is served from the site itself rather than linked as
+  # a release asset: GitHub Pages sets audio/mp4 and honours range requests, so
+  # the player streams and seeks. Release assets are octet-stream + attachment.
+  resources:
+    - media/**
 
 book:
   title: "2027 UF Guide to AI in Science"

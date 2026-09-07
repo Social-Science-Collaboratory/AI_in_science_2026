@@ -8,7 +8,13 @@ source("week-summary/R/week-summary.R")
 # Ideation and Project Management: Critiquing AI {#sec-project-management-critiquing}
 
 ::: {.callout-note icon=false}
-🎧 **This was written by humans.** But we also like this [AI-generated podcast](https://github.com/Social-Science-Collaboratory/AI_in_science_2027/releases/download/podcast-w2-w3/The_Cognitive_Debt_of_AI_Science.m4a) (20:36) of the entire 2-week unit.
+🎧 **This was written by humans.** But we also like this [AI-generated podcast](https://social-science-collaboratory.github.io/AI_in_science_2027/media/cognitive-debt-w2-w3.m4a) (20:36) of the entire 2-week unit.
+
+```{=html}
+<audio controls preload="metadata" style="width: 100%; margin-top: 0.6rem;"
+       src="../media/cognitive-debt-w2-w3.m4a">
+</audio>
+```
 :::
 
 In February 2026, an engineer running an online educational program used Claude Code to help launch a new side project. Instead of launching something new, they ultimately deleted everything they had already built: servers, networks, and years' worth of datasets. The failure point, the engineer would later suggest, was over-automation[@grigorev2026claudecode]. The engineer never checked whether backups could be restored; they never pushed back on questionable recommendations from the coding agent; and they allowed it to run irreversible commands completely unsupervised. Issues like these are bound to become more common as scientists increasingly rely on AI — the focus of Week 3 of the Fall 2026 Collective [Artificial] Intelligence Seminar (@fig-week-03-summary).
