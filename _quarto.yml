@@ -18,8 +18,8 @@ book:
     - name: "Nicholas A. Coles"
       email: "ncoles@ufl.edu"
       affiliations:
-        - name: "Bureau of Economic and Business Research"
         - name: "Department of Psychology"
+        - name: "Bureau of Economic and Business Research"
     - name: "Abhay Alaukik"
       affiliations:
         - name: "Department of Psychology"
