@@ -103,7 +103,7 @@ book:
       chapters:
         - weeks/10-writing-using.qmd
         - weeks/11-writing-critiquing.qmd
-    - part: "Review, Outreach, and Dissemination"
+    - part: "Ethics and Outreach"
       chapters:
         - weeks/12-dissemination-using.qmd
         - weeks/13-dissemination-critiquing.qmd
