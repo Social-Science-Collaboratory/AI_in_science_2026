@@ -8,6 +8,10 @@ source("checkin-workflow/R/checkin-workflow.R")
 
 # Ideation and Project Management: Using AI {#sec-project-management-using}
 
+::: {.callout-note icon=false}
+🎧 **This was written by humans.** But we also like this [AI-generated podcast](https://github.com/Social-Science-Collaboratory/AI_in_science_2027/releases/download/podcast-w2-w3/The_Cognitive_Debt_of_AI_Science.m4a) (20:36) of the entire 2-week unit.
+:::
+
 Many researchers' first contact with AI tools is in the realm of ideation or project management (@fig-week-02-summary). For example, one seminar participant noted that they have their research trainees submit weekly updates to a folder shared with the LLM, Claude (@fig-checkin-workflow, Panel A). This allows them to later prompt the model with questions about past conversations, challenges, decisions, and solutions (@fig-checkin-workflow, Panel B). Specifically, the seminar participant demonstrated how Claude can be used to efficiently take stock of a trainee's progress, have a conversation with the LLM about potential future directions, and generate a simulated figure to send back to the trainee to convey next steps (@fig-checkin-workflow, Panel C).
 
 ```{r}
