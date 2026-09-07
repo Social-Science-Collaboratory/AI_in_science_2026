@@ -101,3 +101,22 @@
     }
   }
 }
+
+// Callout boxes in UF blue rather than the theme's default greys: a saturated
+// left bar, a lightly tinted title strip, and a border in the same hue instead
+// of Bootstrap's neutral #dee2e6.
+$uf-blue: #0021a5;
+
+div.callout-note.callout {
+  border-left-color: $uf-blue;
+}
+
+.callout.callout-style-default {
+  border-right-color: rgba($uf-blue, 0.25);
+  border-top-color: rgba($uf-blue, 0.25);
+  border-bottom-color: rgba($uf-blue, 0.25);
+}
+
+div.callout-note.callout-style-default > .callout-header {
+  background-color: rgba($uf-blue, 0.07);
+}
