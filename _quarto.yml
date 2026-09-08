@@ -82,7 +82,11 @@ book:
   # numbering starts at 02: week 1 (Aug 20) was the Foundations session, which
   # the preface covers. weeks/NN- therefore always equals syllabus week NN.
   chapters:
-    - index.qmd
+    # The front page carries the book's own title, not a chapter title, so it
+    # has no `title:` of its own; without one the sidebar would fall back to
+    # the file name ("index.html"). Label the sidebar entry here instead.
+    - href: index.qmd
+      text: "Preface"
     - part: "Ideation and Project Management"
       chapters:
         - weeks/02-project-management-using.qmd
