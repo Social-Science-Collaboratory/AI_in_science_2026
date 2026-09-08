@@ -130,6 +130,11 @@ format:
     template-partials:
       - title-metadata.html
     fig-dpi: 300
+    # No right-hand table of contents: every chapter is a single scroll with at
+    # most one `##`, so the TOC only ever listed the page's own title. Dropping
+    # it moves the repo-actions links into the page footer (Quarto relocates
+    # them automatically) and lets the wide figures use the freed column.
+    toc: false
   pdf:
     documentclass: scrreprt
     fig-format: pdf
