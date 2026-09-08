@@ -1,14 +1,14 @@
 # checkin-workflow.R ------------------------------------------------------
 #
 # Figure package for the check-in workflow vignette used as Figure 2 of
-# weeks/01-project-management-using.qmd.
+# weeks/02-project-management-using.qmd.
 #
 # Three screenshots, laid out as a 2-row multipanel at the same 12in width the
 # week-summary figure uses:
 #
 #   row 1   A  weekly check-ins committed to a shared repository
 #           B  the LLM queried about those accumulated check-ins
-#   row 2   C  the simulated figure sent back to the trainee
+#   row 2   C  the mock-up figure sent back to the trainee
 #
 # Panels are placed with grid rather than composited into a bitmap, so the
 # labels and the MOCK watermark stay vector in the PDF build. Only png and
@@ -21,7 +21,16 @@ library(grid)
 CHECKIN_PANELS <- c(
   A = "checkin-workflow/images/panel-a-checkin-repo.png",
   B = "checkin-workflow/images/panel-b-llm-query.png",
-  C = "checkin-workflow/images/panel-c-simulated-figure.png"
+  C = "checkin-workflow/images/panel-c-mobility-prepost-mockup.png"
+)
+
+# Panel captions, drawn on the figure beside each bold letter. Kept here rather
+# than inline in the draw calls so the wording lives next to the sources it
+# describes, and so a reader can check the two lists agree panel by panel.
+CHECKIN_LABELS <- c(
+  A = "Trainee submits update to shared folder",
+  B = "Adviser uses Claude to summarize and plan next steps",
+  C = "Adviser uses Claude to generate mock-up of future directions"
 )
 
 
@@ -53,9 +62,9 @@ checkin_workflow_layout <- function(width = 12,
   w_b <- avail - w_a
   row1_image <- w_a / aspect[["A"]]
 
-  # Row 2: panel C spans the full inner width, matching row 1. It is
-  # regenerated at this aspect by R/panel-c-migration-varimp.R rather than
-  # upscaled, so spanning the width costs no resolution.
+  # Row 2: panel C spans the full inner width, matching row 1. It is a
+  # supplied 4800x2700 export, so at 11.76in wide it still lands near 408
+  # dpi; nothing is upscaled and spanning the width costs no resolution.
   w_c <- inner
   h_c <- w_c / aspect[["C"]]
 
@@ -83,12 +92,31 @@ checkin_workflow_layout <- function(width = 12,
 #' panels in the same row share a baseline at the top rather than the bottom.
 #' Images are drawn without a frame: every source already has its own light
 #' background, and a hairline around each read as chart junk on the page.
-draw_panel <- function(img, label, x, y, cell_w, img_w, img_h, label_height) {
+draw_panel <- function(img, label, desc, x, y, cell_w, img_w, img_h,
+                       label_height) {
+  letter <- paste0(label, ".")
+  letter_gp <- gpar(fontface = "bold",  fontsize = 13, col = "grey15")
+  desc_gp   <- gpar(fontface = "plain", fontsize = 13, col = "grey15")
+  y_mid <- unit(y - label_height / 2, "in")
+
   grid.text(
-    label,
-    x = unit(x, "in"), y = unit(y - label_height / 2, "in"),
-    hjust = 0, vjust = 0.5,
-    gp = gpar(fontface = "bold", fontsize = 13, col = "grey15")
+    letter,
+    x = unit(x, "in"), y = y_mid,
+    hjust = 0, vjust = 0.5, gp = letter_gp
+  )
+
+  # The description starts past the bold letter and a word space. That offset
+  # is measured off the rendered glyphs rather than guessed at, so the two runs
+  # stay butted together if the fontsize or the letter ever changes; grid
+  # counts a trailing space in a string's width, which is what makes this work.
+  lead <- convertWidth(
+    grobWidth(textGrob(paste0(letter, " "), gp = letter_gp)),
+    "in", valueOnly = TRUE
+  )
+  grid.text(
+    desc,
+    x = unit(x + lead, "in"), y = y_mid,
+    hjust = 0, vjust = 0.5, gp = desc_gp
   )
 
   img_x <- x + (cell_w - img_w) / 2
@@ -163,14 +191,14 @@ checkin_workflow_plot <- function(width = 12, watermark = TRUE, ...) {
   top <- lay$height - lay$margin
 
   draw_panel(
-    imgs$A, "A",
+    imgs$A, "A", CHECKIN_LABELS[["A"]],
     x = lay$margin, y = top,
     cell_w = lay$panel$A$w,
     img_w = lay$panel$A$w, img_h = lay$panel$A$h,
     label_height = lay$label_height
   )
   draw_panel(
-    imgs$B, "B",
+    imgs$B, "B", CHECKIN_LABELS[["B"]],
     x = lay$margin + lay$panel$A$w + lay$gap, y = top,
     cell_w = lay$panel$B$w,
     img_w = lay$panel$B$w, img_h = lay$panel$B$h,
@@ -179,7 +207,7 @@ checkin_workflow_plot <- function(width = 12, watermark = TRUE, ...) {
 
   row2_top <- top - lay$label_height - lay$row1_image - lay$row_gap
   draw_panel(
-    imgs$C, "C",
+    imgs$C, "C", CHECKIN_LABELS[["C"]],
     x = lay$margin, y = row2_top,
     cell_w = lay$panel$C$w,
     img_w = lay$panel$C$w, img_h = lay$panel$C$h,

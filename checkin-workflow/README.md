@@ -1,6 +1,6 @@
 # checkin-workflow
 
-Figure package for Figure 2 of `weeks/01-project-management-using.qmd` — the
+Figure package for Figure 2 of `weeks/02-project-management-using.qmd` — the
 worked example of a lab that commits weekly trainee check-ins to a shared
 repository and then queries an LLM against the accumulated record.
 
@@ -14,7 +14,7 @@ a chapter: `_quarto.yml` does not render anything here, and the chapter sources
 |---|---|---|
 | A | `images/panel-a-checkin-repo.png` | The check-in repository: one `.qmd` per week per trainee, with the PI's inline comments in the margin |
 | B | `images/panel-b-llm-query.png` | The LLM queried about the accumulated check-ins, reading across all 19 of one trainee's entries at once |
-| C | `images/panel-c-simulated-figure.png` | The simulated figure produced in that conversation and sent back to the trainee to convey next steps |
+| C | `images/panel-c-mobility-prepost-mockup.png` | The mock-up figure produced in that conversation and sent back to the trainee to convey next steps |
 
 A and B share the top row; C spans the second row at full width. Total width is
 12in, matching `week_summary_plot()` so the two figures in the chapter align.
@@ -25,18 +25,25 @@ than A and floating in white space. Splitting by aspect makes both panels
 exactly the same height with no padding, at the cost of slightly unequal
 column widths (5.51in vs 6.05in), which reads as the lesser flaw.
 
-## Regenerating panel C
+## Panel labels
 
-`R/panel-c-migration-varimp.R` is a copy of `migration_varimp_mockup.R` from
-the migration project, differing only in its output size and path: it renders
-at 11.76 x 7.0in so panel C spans the figure's full inner width. Upscaling the
-original 10.5 x 8.6in export instead would have been soft at print resolution
-and would have made the figure roughly 14in tall. Re-run it from the project
-root if the underlying mockup changes:
+Each panel carries a bold letter followed by a plain-weight description, held in
+`CHECKIN_LABELS` next to `CHECKIN_PANELS` so the two lists can be checked against
+each other panel by panel. The description is offset by the *measured* width of
+the bold letter plus a space rather than a guessed indent, so the two runs stay
+butted together if the fontsize changes. At 13pt the longest label is about
+5.2in against panel C's 11.76in, so none of the three crowds its column.
 
-```sh
-Rscript checkin-workflow/R/panel-c-migration-varimp.R
-```
+## Panel C
+
+Panel C is a supplied 4800 x 2700 export
+(`images/panel-c-mobility-prepost-mockup.png`), drawn at the figure's full inner
+width of 11.76in — about 408 dpi, so nothing is upscaled.
+
+It replaced an earlier variable-importance mockup. That predecessor and its
+generator (`images/panel-c-simulated-figure.png` and
+`R/panel-c-migration-varimp.R`) are still in the tree but no longer referenced
+by `checkin-workflow.R`; delete both if the old panel is not coming back.
 
 ## The MOCK watermark
 
@@ -61,10 +68,11 @@ checkin_workflow_save()          # write figures/checkin-workflow.{png,pdf}
 checkin_workflow_layout()$height # fig-height the calling chunk should declare
 ```
 
-The chunk's `fig-height` must match `checkin_workflow_layout()$height` (11.63in
+The chunk's `fig-height` must match `checkin_workflow_layout()$height` (11.24in
 at the default 12in width), or grid will stretch the panels. Replacing a
 screenshot with one of different proportions changes that number — re-run
-`checkin_workflow_layout()` and update the chunk.
+`checkin_workflow_layout()` and update the chunk. Panel C's swap is what moved
+it from 11.63in to 11.24in.
 
 Panels are placed with `grid` and `png::readPNG` rather than composited into a
 bitmap, so the labels and the watermark stay vector in the PDF build. No
