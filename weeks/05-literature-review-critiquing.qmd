@@ -1,3 +1,7 @@
 # Literature Review and Synthesis: Critiquing AI {#sec-literature-review-critiquing}
 
+::: {.callout-note icon=false title="This content was identified, synthesized, and written by humans."}
+📚 But we also like this AI-generated review (TBD) of the benefits and drawbacks of AI for literature review and synthesis.
+:::
+
 *Covered in Week 5 of the seminar (September 17, 2026). Estimated date of arrival: September 27, 2026.*

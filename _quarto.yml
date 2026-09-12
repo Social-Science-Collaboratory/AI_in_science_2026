@@ -1,8 +1,8 @@
 project:
   type: book
-  # scale-ladder/ and week-summary/ are figure packages, not chapters: their R,
-  # data and standalone drafts are sourced by the chapters, never rendered as
-  # pages of the book.
+  # scale-ladder/, week-summary/, checkin-workflow/ and literature-review/ are
+  # figure packages, not chapters: their R, data and standalone drafts are
+  # sourced by the chapters, never rendered as pages of the book.
   render:
     - index.qmd
     - weeks/*.qmd
